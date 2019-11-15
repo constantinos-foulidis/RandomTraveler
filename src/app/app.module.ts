@@ -1,16 +1,18 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 //Apis external libraries
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { SearchComponent } from './search/search.component';
-
+import {FlexLayoutModule} from '@angular/flex-layout';
+import {SearchComponent} from './search/search.component';
+import {Ng5SliderModule} from 'ng5-slider';
+import {MatButtonModule} from '@angular/material/button';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -22,8 +24,11 @@ import { SearchComponent } from './search/search.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatInputModule,
-     MatFormFieldModule,
+    MatFormFieldModule,
     FlexLayoutModule,
+    Ng5SliderModule,
+    MatButtonModule,
+    MatRadioModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,16 +1,28 @@
 <h1 fxLayoutAlign="center center">Random Traveler</h1>
 
-<form fxLayout="column" fxLayoutAlign="center center">
 
-  <mat-form-field fxLayout="row">
+<div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px">
+
+
+  <mat-form-field>
     <input matInput placeholder="Travel From" />
   </mat-form-field>
 
-  <mat-form-field fxLayout="row">
-    <textarea matInput placeholder="Leave a comment"></textarea>
-  </mat-form-field>
+<mat-radio-group aria-label="Select an option">
+  <mat-radio-button color="primary" value="1">One-way</mat-radio-button>
+  <mat-radio-button color="primary" value="2">Round</mat-radio-button>
+</mat-radio-group>
 
-</form>
+    <span>Days in Destination</span>
+    <ng5-slider [(value)]="value" [(highValue)]="highValue" [options]="options" ></ng5-slider>
+
+    <span>Budget</span>
+    <ng5-slider [(value)]="Budgetvalue" [options]="Budgetoptions"></ng5-slider>
+
+<button mat-raised-button>Search</button>
+
+</div>
+
 
 
 <div  fxLayout="row" >
