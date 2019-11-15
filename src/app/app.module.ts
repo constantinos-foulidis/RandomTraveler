@@ -4,6 +4,7 @@ import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
 
 //Apis external libraries
 import {MatInputModule} from '@angular/material/input';
@@ -13,6 +14,7 @@ import {SearchComponent} from './search/search.component';
 import {Ng5SliderModule} from 'ng5-slider';
 import {MatButtonModule} from '@angular/material/button';
 import {MatRadioModule} from '@angular/material/radio';
+
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import {MatRadioModule} from '@angular/material/radio';
     Ng5SliderModule,
     MatButtonModule,
     MatRadioModule,
+    ReactiveFormsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

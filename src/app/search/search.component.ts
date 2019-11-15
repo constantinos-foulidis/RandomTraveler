@@ -1,4 +1,8 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
+import {Options} from 'ng5-slider';
+import {LabelType} from 'ng5-slider';
+import {FormBuilder,Validators,FormGroup,FormControl} from '@angular/forms';
+
 
 @Component({
   selector: 'app-search',
@@ -7,8 +11,13 @@ import { Component, OnInit, HostBinding } from '@angular/core';
 
 })
 export class SearchComponent implements OnInit {
-
-  constructor() { }
+  searchForm = this.fb.group({
+      flyName: ['',Validators.required],
+      budgetPrice: [''],
+      dayRange: [''],
+      flyType: ['',Validators.required],
+    });
+  constructor(private fb: FormBuilder) { }
 //values for simple slader
 Budgetvalue: number = 0;
  Budgetoptions: Options = {
@@ -27,5 +36,11 @@ options: Options = {
 };
   ngOnInit() {
   }
+
+
+onSubmit() {
+  // TODO: Use EventEmitter with form value
+  console.log(this.searchForm.value);
+}
 
 }

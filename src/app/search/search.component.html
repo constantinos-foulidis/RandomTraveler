@@ -1,27 +1,29 @@
 <h1 fxLayoutAlign="center center">Random Traveler</h1>
 
-
-<div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px">
-
+<form [formGroup]="searchForm" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px">
 
   <mat-form-field>
-    <input matInput placeholder="Travel From" />
+    <input matInput placeholder="Travel From" formControlName="flyName" required/>
   </mat-form-field>
-
-<mat-radio-group aria-label="Select an option">
+  <span>Fly type</span>
+<mat-radio-group aria-label="Select an option" formControlName="flyType" required>
   <mat-radio-button color="primary" value="1">One-way</mat-radio-button>
   <mat-radio-button color="primary" value="2">Round</mat-radio-button>
 </mat-radio-group>
 
     <span>Days in Destination</span>
-    <ng5-slider [(value)]="value" [(highValue)]="highValue" [options]="options" ></ng5-slider>
+    <ng5-slider [(value)]="value" [(highValue)]="highValue" [options]="options" formControlName="dayRange"></ng5-slider>
 
     <span>Budget</span>
-    <ng5-slider [(value)]="Budgetvalue" [options]="Budgetoptions"></ng5-slider>
+    <ng5-slider [(value)]="Budgetvalue" [options]="Budgetoptions" formControlName="budgetPrice"></ng5-slider>
 
-<button mat-raised-button>Search</button>
+<button mat-raised-button [formGroup]="searchForm" (click)="onSubmit()" [disabled]="!searchForm.valid" >Search</button>
+</form>
 
-</div>
+
+
+
+
 
 
 
