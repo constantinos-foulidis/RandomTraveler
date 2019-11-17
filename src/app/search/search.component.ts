@@ -23,7 +23,7 @@ Budgetvalue: number = 0;
  Budgetoptions: Options = {
    floor: 0,
    ceil: 3000,
-    translate: (value: number, label: LabelType): string => {
+    translate: (value: number): string => {
       return '$' + value;
     }
  };
