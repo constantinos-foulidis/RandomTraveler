@@ -2,6 +2,9 @@ import { Component, OnInit, HostBinding } from '@angular/core';
 import {Options} from 'ng5-slider';
 import {LabelType} from 'ng5-slider';
 import {FormBuilder,Validators,FormGroup,FormControl} from '@angular/forms';
+import {FlightData} from '../Search-data';
+import {FlightService} from '../flight.service';
+
 
 
 @Component({
@@ -11,13 +14,14 @@ import {FormBuilder,Validators,FormGroup,FormControl} from '@angular/forms';
 
 })
 export class SearchComponent implements OnInit {
+  data  : FlightData;
   searchForm = this.fb.group({
       flyName: ['',Validators.required],
       budgetPrice: [''],
       dayRange: [''],
       flyType: ['',Validators.required],
     });
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,private flightService:FlightService) { }
 //values for simple slader
 Budgetvalue: number = 0;
  Budgetoptions: Options = {
@@ -35,12 +39,18 @@ options: Options = {
   ceil: 30
 };
   ngOnInit() {
+
   }
 
 
 onSubmit() {
   // TODO: Use EventEmitter with form value
   console.log(this.searchForm.value);
+var respones = this.flightService.getHeroes(this.searchForm.value).
+subscribe(heroes => this.data = heroes);
+
+
+
 }
 
 }
