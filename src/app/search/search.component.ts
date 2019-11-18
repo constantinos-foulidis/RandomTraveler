@@ -3,6 +3,9 @@
 /** Angular **/
 import {Component,HostBinding} from '@angular/core';
 import {FormBuilder,Validators,FormGroup,FormControl} from '@angular/forms';
+import {FlightData} from '../Search-data';
+import {FlightService} from '../flight.service';
+
 
 /** ng5-slider **/
 import {Options, LabelType} from 'ng5-slider';
@@ -22,8 +25,9 @@ export class SearchComponent {
       dayRange: [''],
       flyType: ['',Validators.required],
     });
+  public data :FlightData [];
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,private flightService:FlightService) { }
 
   //values for range slider
   value: number = 1;
@@ -46,7 +50,14 @@ export class SearchComponent {
 
  onSubmit() {
    // TODO: Use EventEmitter with form value
+   // TODO: Use EventEmitter with form value
    console.log(this.searchForm.value);
+   var respones = this.flightService.getFlights(this.searchForm.value).
+   subscribe( flights => {
+     console.log(flights);
+     this.data = flights;
+   });
+
  };
 
 }

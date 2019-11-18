@@ -17,7 +17,7 @@
     <span>Budget</span>
     <ng5-slider [(value)]="budgetvalue" [options]="budgetoptions" formControlName="budgetPrice"></ng5-slider>
 
-<button mat-raised-button [formGroup]="searchForm" (click)="onSubmit()" [disabled]="!searchForm.valid" >Search</button>
+<button routerLink="/flights" mat-raised-button [formGroup]="searchForm" (click)="onSubmit()" [disabled]="!searchForm.valid" >Search</button>
 </form>
 
 

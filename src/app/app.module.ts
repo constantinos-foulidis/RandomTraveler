@@ -1,5 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+import {HttpClientModule}    from '@angular/common/http';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -14,12 +15,14 @@ import {SearchComponent} from './search/search.component';
 import {Ng5SliderModule} from 'ng5-slider';
 import {MatButtonModule} from '@angular/material/button';
 import {MatRadioModule} from '@angular/material/radio';
+import { FlightsComponent } from './flights/flights.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchComponent,
+    FlightsComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,6 +35,7 @@ import {MatRadioModule} from '@angular/material/radio';
     MatButtonModule,
     MatRadioModule,
     ReactiveFormsModule,
+    HttpClientModule,
 
   ],
   providers: [],
