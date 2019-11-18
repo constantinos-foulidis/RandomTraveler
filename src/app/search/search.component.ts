@@ -52,11 +52,8 @@ export class SearchComponent {
    // TODO: Use EventEmitter with form value
    // TODO: Use EventEmitter with form value
    console.log(this.searchForm.value);
-   var respones = this.flightService.getFlights(this.searchForm.value).
-   subscribe( flights => {
-     console.log(flights);
-     this.data = flights;
-   });
+    this.flightService.getFlights(this.searchForm.value);
+
 
  };
 

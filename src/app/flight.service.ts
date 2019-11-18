@@ -22,6 +22,7 @@ private BaseUrl = 'https://api.skypicker.com/flights';  // URL to web api
     **/
   getFlights(obj): Observable<FlightData[]> {
    // TODO: send the message _after_ fetching the heroes
+   console.log(obj);
    return this.http.get<FlightData>(this.BaseUrl,{
       responseType:'json',
         params:{
