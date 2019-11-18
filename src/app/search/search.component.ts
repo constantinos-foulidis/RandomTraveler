@@ -1,46 +1,52 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
-import {Options} from 'ng5-slider';
-import {LabelType} from 'ng5-slider';
+'use strict';
+
+/** Angular **/
+import {Component,HostBinding} from '@angular/core';
 import {FormBuilder,Validators,FormGroup,FormControl} from '@angular/forms';
 
+/** ng5-slider **/
+import {Options, LabelType} from 'ng5-slider';
 
+/******************************************************************************/
+/******************************************************************************/
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.sass'],
 
 })
-export class SearchComponent implements OnInit {
-  searchForm = this.fb.group({
+export class SearchComponent {
+  public searchForm: FormGroup = this.fb.group({
       flyName: ['',Validators.required],
       budgetPrice: [''],
       dayRange: [''],
       flyType: ['',Validators.required],
     });
+
   constructor(private fb: FormBuilder) { }
-//values for simple slader
-Budgetvalue: number = 0;
- Budgetoptions: Options = {
-   floor: 0,
-   ceil: 3000,
-    translate: (value: number, label: LabelType): string => {
-      return '$' + value;
-    }
- };
+
   //values for range slider
   value: number = 1;
-highValue: number = 10;
-options: Options = {
-  floor: 1,
-  ceil: 30
-};
-  ngOnInit() {
-  }
+  highValue: number = 10;
+  options: Options = {
+    floor: 1,
+    ceil: 30
+  };
 
 
-onSubmit() {
-  // TODO: Use EventEmitter with form value
-  console.log(this.searchForm.value);
-}
+
+  /** The keep changing value of the budget slider. **/
+  budgetvalue: number = 0;
+  /** The default options of the budget slider. **/
+  budgetoptions: Options = {
+    floor: 0,
+    ceil: 3000,
+    translate: (value: number): string => `$${value}`,
+ };
+
+ onSubmit() {
+   // TODO: Use EventEmitter with form value
+   console.log(this.searchForm.value);
+ };
 
 }
