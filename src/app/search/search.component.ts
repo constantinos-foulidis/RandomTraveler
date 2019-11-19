@@ -46,8 +46,8 @@ options: Options = {
 onSubmit() {
   // TODO: Use EventEmitter with form value
   console.log(this.searchForm.value);
-var respones = this.flightService.getHeroes(this.searchForm.value).
-subscribe(heroes => this.data = heroes);
+ this.flightService.getHeroes(this.searchForm.value);
+
 
 
 

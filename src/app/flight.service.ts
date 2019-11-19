@@ -12,10 +12,10 @@ export class FlightService {
 private BaseUrl = 'https://api.skypicker.com/flights?';  // URL to web api
   constructor(private http: HttpClient) { }
 
-  getHeroes(obj): Observable<FlightData> {
+  getHeroes(obj): Observable<FlightData[]> {
    // TODO: send the message _after_ fetching the heroes
 
-   return this.http.get<FlightData>(this.BaseUrl,{
+   return this.http.get<FlightData[]>(this.BaseUrl,{
      responseType:'json',
      params:{
        fly_from: obj.flyName,
