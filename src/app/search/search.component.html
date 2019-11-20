@@ -7,7 +7,7 @@
   </mat-form-field>
   <span>Fly type</span>
 <mat-radio-group aria-label="Select an option" formControlName="flyType" required>
-  <mat-radio-button color="primary" value="one-way">One-way</mat-radio-button>
+  <mat-radio-button color="primary" value="oneway">One-way</mat-radio-button>
   <mat-radio-button color="primary" value="round">Round</mat-radio-button>
 </mat-radio-group>
 
@@ -17,7 +17,7 @@
     <span>Budget</span>
     <ng5-slider [(value)]="budgetvalue" [options]="budgetoptions" formControlName="budgetPrice"></ng5-slider>
 
-<button  mat-raised-button [formGroup]="searchForm" (click)="onSubmit()" [disabled]="!searchForm.valid"  >Search</button>
+<button mat-raised-button [formGroup]="searchForm" (click)="onSubmit()" [disabled]="!searchForm.valid"  >Search</button>
 </form>
 
 

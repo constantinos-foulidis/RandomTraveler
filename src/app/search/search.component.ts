@@ -3,9 +3,9 @@
 /** Angular **/
 import {Component,HostBinding} from '@angular/core';
 import {FormBuilder,Validators,FormGroup,FormControl} from '@angular/forms';
-import {FlightData} from '../Search-data';
-import {ComunicationService} from '../comunication.service';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Router,ActivatedRoute,ParamMap} from '@angular/router';
+import {FlightData} from '../ISearchData';
+import {FlightService} from '../flight.service';
 
 
 /** ng5-slider **/
@@ -13,6 +13,7 @@ import {Options} from 'ng5-slider';
 
 /******************************************************************************/
 /******************************************************************************/
+
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -28,7 +29,7 @@ export class SearchComponent {
     });
   public data :FlightData [];
 
-  constructor(private fb: FormBuilder,private comicationService:ComunicationService,private router: Router,) { }
+  constructor(private fb: FormBuilder,private flightService:FlightService,private router: Router) { }
 
   //values for range slider
   value: number = 1;
@@ -53,7 +54,7 @@ export class SearchComponent {
    // TODO: Use EventEmitter with form value
    // TODO: Use EventEmitter with form value
    console.log(this.searchForm.value);
-    this.comicationService.raiseEvent(this.searchForm.value);
+    this.flightService.getFlights(this.searchForm.value);
     this.router.navigate(['/flights']);
 
 
