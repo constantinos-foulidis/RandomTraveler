@@ -1,32 +1,24 @@
-<<<<<<< HEAD
 
-<ul  *ngIf="(flights | async).length">
-    <li class="user" *ngFor="let user of flights$ | async">
-        {{ user.id }}
-    </li>
-</ul>
-=======
-<div  *ngIf="(flights$ | async) != null">
-  <div class="flights_view" fxLayout="column" *ngFor="let flight of (flights$ | async).data" >
-      <div *ngFor="let route of flight.route">
-        <div fxLayout="row" fxLayoutGap="20px">
-          <div>
-            {{route.cityFrom}}
-          </div>
-          <div>
-            {{route.dTime * 1000 | date:'yyyy-MM-dd HH:mm:ss Z'}}
-          </div>
-          <div>
-            <img class="img-flight" src="assets/flying.png"  >
-          </div>
-          <div>
-            {{route.cityTo}}
-          </div>
-          <div>
-            {{route.dTime * 1000 | date:'yyyy-MM-dd HH:mm:ss Z'}}
-          </div>
+<div *ngIf="(flights$ | async) != null">
+  <div class="flights_view" fxLayout="column" *ngFor="let flight of (flights$ | async).data">
+    <div *ngFor="let route of flight.route">
+      <div fxLayout="row" >
+        <div fxFlex="20">
+          {{route.cityFrom}}
+        </div>
+        <div fxFlex="60" class="text-center">
+          <img  class="img-flight" src="assets/flying.png">
+        </div>
+        <div fxFlex>
+          {{route.cityTo}}
+        </div>
+      </div>
+      <div fxLayout="row">
+        <div>
+          {{route.dTime * 1000 | date:'yyyy-MM-dd HH:mm:ss Z'}}
+        </div>
       </div>
     </div>
- </div>
+  </div>
 </div>
->>>>>>> aa34f58b629868c90c2093d649c2f86437eb2510
+<ngx-spinner></ngx-spinner>

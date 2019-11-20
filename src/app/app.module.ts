@@ -17,6 +17,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatRadioModule} from '@angular/material/radio';
 import {FlightsComponent} from './flights/flights.component';
 
+//NgxSpinnerModule
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   declarations: [
@@ -37,6 +39,7 @@ import {FlightsComponent} from './flights/flights.component';
     ReactiveFormsModule,
     HttpClientModule,
     CommonModule,
+    NgxSpinnerModule,
 
   ],
   providers: [],

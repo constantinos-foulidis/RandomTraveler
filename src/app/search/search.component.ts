@@ -1,9 +1,9 @@
 'use strict';
 
 /** Angular **/
-import {Component,HostBinding} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormBuilder,Validators,FormGroup,FormControl} from '@angular/forms';
-import { Router,ActivatedRoute,ParamMap} from '@angular/router';
+import { Router} from '@angular/router';
 import {FlightData} from '../ISearchData';
 import {FlightService} from '../flight.service';
 
