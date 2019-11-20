@@ -5,7 +5,7 @@ import {catchError,map,tap} from 'rxjs/operators';
 import {Injectable} from '@angular/core';
 
 /** Data-Model **/
-import {FlightData} from './Search-data';
+import {FlightData} from './ISearchData';
 
 /******************************************************************************/
 /******************************************************************************/
@@ -22,7 +22,6 @@ private BaseUrl = 'https://api.skypicker.com/flights';  // URL to web api
     **/
     public data$ : Observable<FlightData[]>;
   getFlights(obj): Observable<FlightData[]> {
-   // TODO: send the message _after_ fetching the heroes
    console.log(obj);
      return this.data$ = this.http.get<FlightData[]>(this.BaseUrl,{
       responseType:'json',
@@ -33,7 +32,6 @@ private BaseUrl = 'https://api.skypicker.com/flights';  // URL to web api
           flight_type:obj.flyType,
           nights_in_dst_from:obj.dayRange[0],
           nights_in_dst_to:obj.dayRange[1],
-          direct_flights:0,
           partner:'picky',
           sort:'price'
           }
@@ -43,6 +41,7 @@ private BaseUrl = 'https://api.skypicker.com/flights';  // URL to web api
       catchError(this.handleError)
     );
  }
+ //return flight data
 getdata():Observable<FlightData[]>{
   console.log(this.data$);
   return this.data$;

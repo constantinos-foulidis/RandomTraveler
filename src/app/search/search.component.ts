@@ -4,7 +4,7 @@
 import {Component,HostBinding} from '@angular/core';
 import {FormBuilder,Validators,FormGroup,FormControl} from '@angular/forms';
 import { Router,ActivatedRoute,ParamMap} from '@angular/router';
-import {FlightData} from '../Search-data';
+import {FlightData} from '../ISearchData';
 import {FlightService} from '../flight.service';
 
 
@@ -13,6 +13,7 @@ import {Options, LabelType} from 'ng5-slider';
 
 /******************************************************************************/
 /******************************************************************************/
+
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
