@@ -15,9 +15,9 @@
     <ng5-slider [(value)]="value" [(highValue)]="highValue" [options]="options" formControlName="dayRange"></ng5-slider>
 
     <span>Budget</span>
-    <ng5-slider [(value)]="Budgetvalue" [options]="Budgetoptions" formControlName="budgetPrice"></ng5-slider>
+    <ng5-slider [(value)]="budgetvalue" [options]="budgetoptions" formControlName="budgetPrice"></ng5-slider>
 
-<button mat-raised-button [formGroup]="searchForm" (click)="onSubmit()" [disabled]="!searchForm.valid" >Search</button>
+<button  mat-raised-button [formGroup]="searchForm" (click)="onSubmit()" [disabled]="!searchForm.valid"  >Search</button>
 </form>
 
 

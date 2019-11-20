@@ -1,56 +1,62 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
-import {Options} from 'ng5-slider';
-import {LabelType} from 'ng5-slider';
+'use strict';
+
+/** Angular **/
+import {Component,HostBinding} from '@angular/core';
 import {FormBuilder,Validators,FormGroup,FormControl} from '@angular/forms';
 import {FlightData} from '../Search-data';
-import {FlightService} from '../flight.service';
+import {ComunicationService} from '../comunication.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 
+/** ng5-slider **/
+import {Options} from 'ng5-slider';
 
+/******************************************************************************/
+/******************************************************************************/
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.sass'],
 
 })
-export class SearchComponent implements OnInit {
-  data  : FlightData;
-  searchForm = this.fb.group({
+export class SearchComponent {
+  public searchForm: FormGroup = this.fb.group({
       flyName: ['',Validators.required],
       budgetPrice: [''],
       dayRange: [''],
       flyType: ['',Validators.required],
     });
-  constructor(private fb: FormBuilder,private flightService:FlightService) { }
-//values for simple slader
-Budgetvalue: number = 0;
- Budgetoptions: Options = {
-   floor: 0,
-   ceil: 3000,
-    translate: (value: number): string => {
-      return '$' + value;
-    }
- };
+  public data :FlightData [];
+
+  constructor(private fb: FormBuilder,private comicationService:ComunicationService,private router: Router,) { }
+
   //values for range slider
   value: number = 1;
-highValue: number = 10;
-options: Options = {
-  floor: 1,
-  ceil: 30
-};
-  ngOnInit() {
-
-  }
-
-
-onSubmit() {
-  // TODO: Use EventEmitter with form value
-  console.log(this.searchForm.value);
- this.flightService.getHeroes(this.searchForm.value);
+  highValue: number = 10;
+  options: Options = {
+    floor: 1,
+    ceil: 30
+  };
 
 
 
+  /** The keep changing value of the budget slider. **/
+  budgetvalue: number = 0;
+  /** The default options of the budget slider. **/
+  budgetoptions: Options = {
+    floor: 0,
+    ceil: 3000,
+    translate: (value: number): string => `$${value}`,
+ };
 
-}
+ onSubmit() {
+   // TODO: Use EventEmitter with form value
+   // TODO: Use EventEmitter with form value
+   console.log(this.searchForm.value);
+    this.comicationService.raiseEvent(this.searchForm.value);
+    this.router.navigate(['/flights']);
+
+
+ };
 
 }
