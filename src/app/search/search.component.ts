@@ -3,6 +3,7 @@
 /** Angular **/
 import {Component,HostBinding} from '@angular/core';
 import {FormBuilder,Validators,FormGroup,FormControl} from '@angular/forms';
+import { Router,ActivatedRoute,ParamMap} from '@angular/router';
 import {FlightData} from '../Search-data';
 import {FlightService} from '../flight.service';
 
@@ -27,7 +28,7 @@ export class SearchComponent {
     });
   public data :FlightData [];
 
-  constructor(private fb: FormBuilder,private flightService:FlightService) { }
+  constructor(private fb: FormBuilder,private flightService:FlightService,private router: Router) { }
 
   //values for range slider
   value: number = 1;
@@ -53,6 +54,7 @@ export class SearchComponent {
    // TODO: Use EventEmitter with form value
    console.log(this.searchForm.value);
     this.flightService.getFlights(this.searchForm.value);
+    this.router.navigate(['/flights']);
 
 
  };

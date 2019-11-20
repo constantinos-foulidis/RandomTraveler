@@ -20,10 +20,11 @@ private BaseUrl = 'https://api.skypicker.com/flights';  // URL to web api
   /**Get flights
     obj => the form data user inserted
     **/
+    public data$ : Observable<FlightData[]>;
   getFlights(obj): Observable<FlightData[]> {
    // TODO: send the message _after_ fetching the heroes
    console.log(obj);
-   return this.http.get<FlightData>(this.BaseUrl,{
+     return this.data$ = this.http.get<FlightData[]>(this.BaseUrl,{
       responseType:'json',
         params:{
           fly_from: obj.flyName,
@@ -32,15 +33,20 @@ private BaseUrl = 'https://api.skypicker.com/flights';  // URL to web api
           flight_type:obj.flyType,
           nights_in_dst_from:obj.dayRange[0],
           nights_in_dst_to:obj.dayRange[1],
+          direct_flights:0,
           partner:'picky',
           sort:'price'
           }
         }
+
     ).pipe(
       catchError(this.handleError)
     );
  }
-
+getdata():Observable<FlightData[]>{
+  console.log(this.data$);
+  return this.data$;
+}
  private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);
