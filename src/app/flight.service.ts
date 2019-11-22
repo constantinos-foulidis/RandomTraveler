@@ -7,6 +7,9 @@ import {Injectable} from '@angular/core';
 /** Data-Model **/
 import {FlightData} from './ISearchData';
 
+/** handle data service **/
+import {HandleDataService} from './handle-data.service';
+
 /******************************************************************************/
 /******************************************************************************/
 
@@ -15,15 +18,15 @@ import {FlightData} from './ISearchData';
 })
 
 export class FlightService {
-private BaseUrl = 'https://api.skypicker.com/flights';  // URL to web api
-  constructor(private http: HttpClient) { }
+const BaseUrl: string = 'https://api.skypicker.com/flights';  // URL to web api
+  constructor(private http: HttpClient,private handleDataService: HandleDataService) { }
   /**Get flights
     obj => the form data user inserted
     **/
     public data$ : Observable<FlightData[]>;
   getFlights(obj): Observable<FlightData[]> {
    console.log(obj);
-     return this.data$ = this.http.get<FlightData[]>(this.BaseUrl,{
+      this.data$ = this.http.get<FlightData[]>(this.BaseUrl,{
       responseType:'json',
         params:{
           fly_from: obj.flyName,
@@ -40,12 +43,16 @@ private BaseUrl = 'https://api.skypicker.com/flights';  // URL to web api
     ).pipe(
       catchError(this.handleError)
     );
+   this.Senddata(this.data$);
+     //return this.data$;
  }
- //return flight data
-getdata():Observable<FlightData[]>{
-  console.log(this.data$);
-  return this.data$;
-}
+ /**Send data
+   passing data to handler service
+   **/
+ Senddata(data :Observable<FlightData[]>):Observable<FlightData[]>{
+   this.handleDataService.setData(data);
+ }
+
  private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);

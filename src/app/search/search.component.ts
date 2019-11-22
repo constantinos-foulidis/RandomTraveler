@@ -11,6 +11,7 @@ import {FlightService} from '../flight.service';
 /** ng5-slider **/
 import {Options, LabelType} from 'ng5-slider';
 
+
 /******************************************************************************/
 /******************************************************************************/
 
@@ -27,7 +28,7 @@ export class SearchComponent {
       dayRange: [''],
       flyType: ['',Validators.required],
     });
-  public data :FlightData [];
+
 
   constructor(private fb: FormBuilder,private flightService:FlightService,private router: Router) { }
 

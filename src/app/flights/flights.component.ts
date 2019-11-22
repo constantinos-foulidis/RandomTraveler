@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import {FlightData} from '../ISearchData';
 import {FlightService} from '../flight.service';
 import {Observable} from 'rxjs';
+import {HandleDataService} from '../handle-data.service';
 
 /******************************************************************************/
 /******************************************************************************/
@@ -15,10 +16,10 @@ import {Observable} from 'rxjs';
 export class FlightsComponent implements OnInit {
 public flights$: Observable<Array<FlightData>> ;
 
-  constructor(private flightService:FlightService) { }
+  constructor(private flightService:FlightService,private handleDataService: HandleDataService) { }
 
   ngOnInit() {
-     this.flights$=this.flightService.getdata();
+     this.flights$=this.handleDataService.getData();
      }
 
   }
