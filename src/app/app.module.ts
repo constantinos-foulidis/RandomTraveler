@@ -16,6 +16,9 @@ import {Ng5SliderModule} from 'ng5-slider';
 import {MatButtonModule} from '@angular/material/button';
 import {MatRadioModule} from '@angular/material/radio';
 import {FlightsComponent} from './flights/flights.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatChipsModule} from '@angular/material/chips';
 
 //NgxSpinnerModule
 import { NgxSpinnerModule } from "ngx-spinner";
@@ -40,6 +43,10 @@ import { NgxSpinnerModule } from "ngx-spinner";
     HttpClientModule,
     CommonModule,
     NgxSpinnerModule,
+    MatCardModule,
+    MatSidenavModule,
+    MatChipsModule,
+
 
   ],
   providers: [],

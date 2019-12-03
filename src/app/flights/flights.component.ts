@@ -1,11 +1,11 @@
 /** Angular **/
 import { Component, OnInit } from '@angular/core';
 import {FlightData} from '../ISearchData';
-import {FlightService} from '../flight.service';
+import {MatCardModule} from '@angular/material/card';
 import {Observable} from 'rxjs';
+import {HandleDataService} from '../handle-data.service';
 
-//NgxSpinner
-import { NgxSpinnerService } from "ngx-spinner";
+
 
 /******************************************************************************/
 /******************************************************************************/
@@ -17,19 +17,13 @@ import { NgxSpinnerService } from "ngx-spinner";
 })
 export class FlightsComponent implements OnInit {
 public flights$: Observable<Array<FlightData>> ;
-
-  constructor(private flightService:FlightService,private spinner: NgxSpinnerService) { }
+public showFiller:boolean = false;
+  constructor(private handleDataService: HandleDataService) { }
 
   ngOnInit() {
-    this.flights$=this.flightService.getdata();
-    this.spinner.show();
-
-    setTimeout(() => {
-
-      /** spinner ends after 5 seconds */
-      this.spinner.hide();
-    }, 7000);
-
+     this.flights$=this.handleDataService.getData();
      }
-
+  country(){
+    console.log(this.flights$);
+  }
   }

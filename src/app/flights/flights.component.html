@@ -1,24 +1,42 @@
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
 
-<div *ngIf="(flights$ | async) != null">
-  <div class="flights_view" fxLayout="column" *ngFor="let flight of (flights$ | async).data">
-    <div *ngFor="let route of flight.route">
-      <div fxLayout="row" >
-        <div fxFlex="20">
-          {{route.cityFrom}}
-        </div>
-        <div fxFlex="60" class="text-center">
-          <img  class="img-flight" src="assets/flying.png">
-        </div>
-        <div fxFlex>
-          {{route.cityTo}}
-        </div>
-      </div>
-      <div fxLayout="row">
-        <div>
-          {{route.dTime * 1000 | date:'yyyy-MM-dd HH:mm:ss Z'}}
-        </div>
+    <mat-chip-list aria-label="Fish selection">
+      <mat-chip>Country</mat-chip>
+      <mat-chip>Chips</mat-chip>
+      <mat-chip color="primary" selected (click)="country()">Works Country</mat-chip>
+   <mat-chip color="accent" selected>Country</mat-chip>
+</mat-chip-list>
+
+
+    <button (click)="showFiller = !showFiller" mat-raised-button>
+      choose filters
+    </button>
+  </mat-drawer>
+
+  <div class="example-sidenav-content">
+    <button type="button" mat-button (click)="drawer.toggle()">
+      Filters
+    </button>
+  </div>
+
+</mat-drawer-container>
+<div  *ngIf="(flights$ | async) ">
+  <div class="flights_view" fxLayout="column" *ngFor="let flight of (flights$ | async)?.data" >
+      <div *ngFor="let route of flight.route">
+        <div  fxLayout="row" fxLayoutGap="20px"  fxLayoutAlign="center center">
+         <mat-card>
+          <mat-card-title>Flights Ticket</mat-card-title>
+            <mat-card-content>
+              {{route.cityFrom}}
+                  {{route.dTime * 1000 | date:'yyyy-MM-dd HH:mm:ss'}}
+            <img class="img-flight" src="assets/flying.png"  >
+            {{route.cityTo}}
+            </mat-card-content>
+          </mat-card>
       </div>
     </div>
   </div>
 </div>
-<ngx-spinner></ngx-spinner>
+
+<div *ngIf="!(flights$ | async)" class="lds-ripple"><div></div><div></div></div>

@@ -1,15 +1,16 @@
 'use strict';
 
 /** Angular **/
-import {Component} from '@angular/core';
-import {FormBuilder,Validators,FormGroup,FormControl} from '@angular/forms';
-import { Router} from '@angular/router';
-import {FlightData} from '../ISearchData';
+import {Component,OnDestroy} from '@angular/core';
+import {FormBuilder,Validators,FormGroup} from '@angular/forms';
 import {FlightService} from '../flight.service';
+import {HandleDataService} from '../handle-data.service';
+import {Subscription} from 'rxjs';
 
 
 /** ng5-slider **/
 import {Options} from 'ng5-slider';
+
 
 /******************************************************************************/
 /******************************************************************************/
@@ -20,16 +21,16 @@ import {Options} from 'ng5-slider';
   styleUrls: ['./search.component.sass'],
 
 })
-export class SearchComponent {
+export class SearchComponent  implements OnDestroy{
   public searchForm: FormGroup = this.fb.group({
       flyName: ['',Validators.required],
       budgetPrice: [''],
       dayRange: [''],
       flyType: ['',Validators.required],
     });
-  public data :FlightData [];
 
-  constructor(private fb: FormBuilder,private flightService:FlightService,private router: Router) { }
+
+  constructor(private fb: FormBuilder,private flightService:FlightService,private handleData : HandleDataService) { }
 
   //values for range slider
   value: number = 1;
@@ -39,7 +40,7 @@ export class SearchComponent {
     ceil: 30
   };
 
-
+  subscription:Subscription;
 
   /** The keep changing value of the budget slider. **/
   budgetvalue: number = 0;
@@ -51,13 +52,21 @@ export class SearchComponent {
  };
 
  onSubmit() {
-   // TODO: Use EventEmitter with form value
-   // TODO: Use EventEmitter with form value
    console.log(this.searchForm.value);
-    this.flightService.getFlights(this.searchForm.value);
-    this.router.navigate(['/flights']);
+    this.subscription =  this.flightService.getFlights(this.searchForm.value).subscribe( data=> {
 
+      console.log(data);
+       this.handleData.setData(data);
+
+
+    }
+
+    );
 
  };
+ ngOnDestroy() {
+    // ...
+    this.subscription.unsubscribe();
+  }
 
 }

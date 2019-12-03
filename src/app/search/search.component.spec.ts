@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import {Observable} from 'rxjs';
 import { SearchComponent } from './search.component';
+
 
 describe('SearchComponent', () => {
   let component: SearchComponent;
@@ -23,3 +24,10 @@ describe('SearchComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+describe('Submit',() =>{
+  it('should return',()=>{
+  const result=this.component.onSubmit();
+  expect(result).toBe(Observable);
+  })
+})
